@@ -28,10 +28,10 @@ const RegisterForm = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, password, passwordConfirm } = form;
+    const { email, username, password, passwordConfirm } = form;
 
     // isEmpty
-    if ([username, password, passwordConfirm].includes('')) {
+    if ([email, username, password, passwordConfirm].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
     }
@@ -47,7 +47,7 @@ const RegisterForm = ({ history }) => {
       return;
     }
 
-    dispatch(register({ username, password }));
+    dispatch(register({ email, username, password }));
   };
 
   useEffect(() => {

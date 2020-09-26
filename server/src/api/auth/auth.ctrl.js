@@ -5,7 +5,7 @@ export const register = async (req, res, next) => {
   // Request Body 검증
   const schema = Joi.object().keys({
     email: Joi.string().email().required(),
-    userName: Joi.string().alphanum().min(3).max(20).required(),
+    username: Joi.string().alphanum().min(3).max(20).required(),
     password: Joi.string().required(),
   });
 
@@ -18,7 +18,7 @@ export const register = async (req, res, next) => {
     return;
   }
 
-  const { email, userName, password } = req.body;
+  const { email, username, password } = req.body;
   try {
     const exists = await User.findByEmail(email); // username 이 존재하는지 검사
     if (exists) {
@@ -28,7 +28,7 @@ export const register = async (req, res, next) => {
 
     const user = new User({
       email,
-      userName
+      username
     });
 
     await user.setPassword(password); // 비밀번호 설정

@@ -28,8 +28,8 @@ const LoginForm = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = form;
-    dispatch(login({ username, password }));
+    const { email, username, password } = form;
+    dispatch(login({ email, username, password }));
   };
 
   // form 초기화

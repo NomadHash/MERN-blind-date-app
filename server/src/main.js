@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
 import morgan from 'morgan';
+import http from 'http';
 
 const { PORT, MONGO_URI } = process.env; // .env 내부 값 비구조화 할당
 
@@ -21,6 +22,7 @@ mongoose
   });
 
 const app = express(); // app은 express 프레임워크 수행
+const server = http.createServer(app); // express로 서버 설정
 
 app.use(bodyParser.json()); // bodyParser 를 JSON 으로 parse
 app.use(bodyParser.urlencoded({ extended: true })); // url 을 인코딩함
@@ -31,6 +33,6 @@ app.use(jwtMiddleware);
 app.use('/api', api); // api 라우터 적용
 
 const port = PORT || 4000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
