@@ -15,7 +15,7 @@
     "mongoose": "^5.10.3"
   },
   "scripts": {
-    "start": "nodemon --watch src/ -r esm src/main.js",
+    "start": "nodemon --watch src/ -r esm src/main.js"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
