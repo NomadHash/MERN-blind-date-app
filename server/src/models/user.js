@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const UserSchema = new Schema({
+  email: String,
   username: String,
   hashedPassword: String,
 });
@@ -18,8 +19,8 @@ UserSchema.methods.checkPassword = async function(password) {
 };
 
 // Static method
-UserSchema.statics.findByUsername = function(username) {
-  return this.findOne({ username }); // static 함수의 this 는 모델(데이터베이스)을 가리킴
+UserSchema.statics.findByEmail = function(email) {
+  return this.findOne({ email }); // static 함수의 this 는 모델(데이터베이스)을 가리킴
 };
 
 UserSchema.methods.serialize = function() {

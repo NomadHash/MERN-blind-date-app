@@ -4,6 +4,7 @@ import User from '../../models/user';
 export const register = async (req, res, next) => {
   // Request Body 검증
   const schema = Joi.object().keys({
+    email: Joi.string().email().required(),
     username: Joi.string().alphanum().min(3).max(20).required(),
     password: Joi.string().required(),
   });
@@ -17,9 +18,9 @@ export const register = async (req, res, next) => {
     return;
   }
 
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const exists = await User.findByUsername(username); // username 이 존재하는지 검사
+    const exists = await User.findByEmail(email); // username 이 존재하는지 검사
     if (exists) {
       res.status(409).send();
       return;
@@ -47,16 +48,16 @@ export const register = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  // username, password 가 없으면 에러
-  if (!username || !password) {
+  // email, password 가 없으면 에러
+  if (!email || !password) {
     res.status(401).send();
     return;
   }
 
   try {
-    const user = await User.findByUsername(username);
+    const user = await User.findByEmail(email);
     // 계정이 존재하지 않으면 에러
     if (!user) {
       res.status(401).send();
@@ -69,8 +70,6 @@ export const login = async (req, res, next) => {
       res.status(401).send();
       return;
     }
-
-    // res.json(user.serialize()); // 클라이언트에 user 정보 넘겨줌
 
     const token = user.generateToken(); // 토큰 생성
 
