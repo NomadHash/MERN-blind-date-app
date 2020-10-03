@@ -11,15 +11,15 @@ const buttonStyle = css`
   outline: none;
   cursor: pointer;
   font-size: 1rem;
-  background-color: #3D79F2;
-  transition: background-color .3s ease;
+  background-color: #3d79f2;
+  transition: background-color 0.3s ease;
   font-family: inherit;
-  
+
   &:hover {
     background-color: #5e8de9;
   }
-  
-  ${props =>
+
+  ${(props) =>
     props.fullWidth &&
     css`
       width: 100%;
@@ -34,12 +34,8 @@ const StyledLink = styled(Link)`
   ${buttonStyle}
 `;
 
-const Button = props => {
-  return props.to ? (
-      <StyledLink {...props} />
-  ) : (
-      <StyledButton {...props} />
-  );
+const Button = (props) => {
+  return props.to ? <StyledLink {...props} /> : <StyledButton {...props} />;
 };
 
 export default Button;

@@ -10,36 +10,38 @@ const INITIALIZE_FORM = 'auth/INITIALIZE_FORM'; // initialize_form action
 
 // register actions
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes(
-    'auth/REGISTER',
+  'auth/REGISTER',
 );
 
 // login actions
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes(
-    'auth/LOGIN',
+  'auth/LOGIN',
 );
 
 // create action
 export const changeField = createAction(
-    CHANGE_FIELD,
-    // define payload values
-    ({ form, key, value }) => ({
-      form,
-      key,
-      value,
-    }),
+  CHANGE_FIELD,
+  // define payload values
+  ({ form, key, value }) => ({
+    form,
+    key,
+    value,
+  }),
 );
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
-export const register = createAction(REGISTER, ({ email, username, password }) => ({
-  email,
-  username,
-  password,
-}));
+export const register = createAction(
+  REGISTER,
+  ({ email, username, password }) => ({
+    email,
+    username,
+    password,
+  }),
+);
 
-export const login = createAction(LOGIN, ({ email, username, password }) => ({
+export const login = createAction(LOGIN, ({ email, password }) => ({
   email,
-  username,
   password,
 }));
 
@@ -69,39 +71,39 @@ const initialState = {
 };
 
 const auth = handleActions(
-    {
-      [CHANGE_FIELD]: (state, { payload: { form, key, value } }) => ({
-        ...state,
-        // form: register or login
-        [form]: {
-          ...state[form],
-          [key]: value, // key: username or password or passwordConfirm
-        },
-      }),
-      [INITIALIZE_FORM]: (state, { payload: form }) => ({
-        ...state,
-        [form]: initialState[form], // reset register or login to initialize value
-      }),
-      [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
-        ...state,
-        auth,
-        authError: null,
-      }),
-      [REGISTER_FAILURE]: (state, { payload: error }) => ({
-        ...state,
-        authError: error,
-      }),
-      [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
-        ...state,
-        auth,
-        authError: null,
-      }),
-      [LOGIN_FAILURE]: (state, { payload: error }) => ({
-        ...state,
-        authError: error,
-      }),
-    },
-    initialState,
+  {
+    [CHANGE_FIELD]: (state, { payload: { form, key, value } }) => ({
+      ...state,
+      // form: register or login
+      [form]: {
+        ...state[form],
+        [key]: value, // key: username or password or passwordConfirm
+      },
+    }),
+    [INITIALIZE_FORM]: (state, { payload: form }) => ({
+      ...state,
+      [form]: initialState[form], // reset register or login to initialize value
+    }),
+    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      auth,
+      authError: null,
+    }),
+    [REGISTER_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      authError: error,
+    }),
+    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      auth,
+      authError: null,
+    }),
+    [LOGIN_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      authError: error,
+    }),
+  },
+  initialState,
 );
 
 export default auth;

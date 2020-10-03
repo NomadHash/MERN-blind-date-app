@@ -24,14 +24,10 @@ const WhiteBoardBlock = styled.div`
 
 const WhiteBoard = ({ title, children, ...props }) => {
   return (
-      <div {...props}>
-        <WhiteBoardTop>
-          {title}
-        </WhiteBoardTop>
-        <WhiteBoardBlock>
-          {children}
-        </WhiteBoardBlock>
-      </div>
+    <div {...props}>
+      <WhiteBoardTop>{title}</WhiteBoardTop>
+      <WhiteBoardBlock>{children}</WhiteBoardBlock>
+    </div>
   );
 };
 

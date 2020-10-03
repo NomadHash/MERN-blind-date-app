@@ -15,21 +15,21 @@ const LoginForm = ({ history }) => {
     user: user.user,
   }));
 
-  const onChange = e => {
+  const onChange = (e) => {
     const { name, value } = e.target;
     dispatch(
       changeField({
         form: 'login',
         key: name,
         value,
-      })
+      }),
     );
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const { email, username, password } = form;
-    dispatch(login({ email, username, password }));
+    const { email, password } = form;
+    dispatch(login({ email, password }));
   };
 
   // form 초기화
@@ -50,7 +50,6 @@ const LoginForm = ({ history }) => {
 
     // Login success
     if (auth) {
-      console.log(auth);
       dispatch(check());
     }
   }, [auth, authError, dispatch]);

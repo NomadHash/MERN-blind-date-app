@@ -20,7 +20,7 @@ const HeaderWrapper = styled(Responsive)`
   align-items: center;
   color: #0c4ccb;
   overflow: hidden;
-  
+
   .logo {
     display: flex;
     font-weight: bold;
@@ -31,7 +31,7 @@ const HeaderWrapper = styled(Responsive)`
     height: 100%;
     align-items: center;
   }
-  
+
   .right {
     display: flex;
     align-items: center;
@@ -48,26 +48,26 @@ const UserInfo = styled.div`
 
 const Header = ({ user, onLogout }) => {
   return (
-      <>
-        <HeaderBlock>
-          <HeaderWrapper>
-            <Link to="/" className="logo">
-              MERN
-            </Link>
-            {user ? (
-                <div className="right">
-                  <UserInfo>{user.username}</UserInfo>
-                  <Button onClick={onLogout}>로그아웃</Button>
-                </div>
-            ) : (
-                <div className="right">
-                  <Button to="/login">로그인</Button>
-                </div>
-            )}
-          </HeaderWrapper>
-        </HeaderBlock>
-        <SpaceBlock />
-      </>
+    <>
+      <HeaderBlock>
+        <HeaderWrapper>
+          <Link to="/" className="logo">
+            MERN
+          </Link>
+          {user ? (
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
+              <Button onClick={onLogout}>로그아웃</Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button to="/login">로그인</Button>
+            </div>
+          )}
+        </HeaderWrapper>
+      </HeaderBlock>
+      <SpaceBlock />
+    </>
   );
 };
 

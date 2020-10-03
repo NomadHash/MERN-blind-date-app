@@ -6,11 +6,11 @@ import RegisterPage from './pages/RegisterPage';
 
 const App = () => {
   return (
-      <>
-        <Route component={MainPage} path="/" exact />
-        <Route component={LoginPage} path="/login/" />
-        <Route component={RegisterPage} path="/register/" />
-      </>
+    <>
+      <Route component={MainPage} path="/" exact />
+      <Route component={LoginPage} path="/login/" />
+      <Route component={RegisterPage} path="/register/" />
+    </>
   );
 };
 

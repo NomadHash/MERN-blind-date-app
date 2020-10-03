@@ -4,10 +4,10 @@ import HeaderContainer from '../containers/common/HeaderContainer';
 
 const MainPage = () => {
   return (
-      <>
-        <HeaderContainer />
-        <Main />
-      </>
+    <>
+      <HeaderContainer />
+      <Main />
+    </>
   );
 };
 
