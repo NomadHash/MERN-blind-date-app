@@ -18,11 +18,11 @@ const RegisterForm = ({ history }) => {
   const onChange = (e) => {
     const { name, value } = e.target;
     dispatch(
-        changeField({
-          form: 'register',
-          key: name,
-          value,
-        }),
+      changeField({
+        form: 'register',
+        key: name,
+        value,
+      }),
     );
   };
 
@@ -41,7 +41,7 @@ const RegisterForm = ({ history }) => {
       setError('비밀번호가 일치하지 않습니다.');
       dispatch(changeField({ form: 'register', key: 'password', value: '' }));
       dispatch(
-          changeField({ form: 'register', key: 'passwordConfirm', value: '' }),
+        changeField({ form: 'register', key: 'passwordConfirm', value: '' }),
       );
 
       return;
@@ -58,6 +58,7 @@ const RegisterForm = ({ history }) => {
     if (authError) {
       // exist user
       if (authError.response.status === 409) {
+        console.log(authError.response);
         setError('이미 존재하는 계정입니다.');
         return;
       }
@@ -84,13 +85,13 @@ const RegisterForm = ({ history }) => {
   }, [history, user]);
 
   return (
-      <AuthForm
-          type="register"
-          form={form}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          error={error}
-      />
+    <AuthForm
+      type="register"
+      form={form}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      error={error}
+    />
   );
 };
 

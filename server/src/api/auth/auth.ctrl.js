@@ -28,7 +28,7 @@ export const register = async (req, res, next) => {
 
     const user = new User({
       email,
-      username
+      username,
     });
 
     await user.setPassword(password); // 비밀번호 설정

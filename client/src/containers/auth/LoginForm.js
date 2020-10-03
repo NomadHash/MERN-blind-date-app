@@ -15,18 +15,18 @@ const LoginForm = ({ history }) => {
     user: user.user,
   }));
 
-  const onChange = (e) => {
+  const onChange = e => {
     const { name, value } = e.target;
     dispatch(
-        changeField({
-          form: 'login',
-          key: name,
-          value,
-        }),
+      changeField({
+        form: 'login',
+        key: name,
+        value,
+      })
     );
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     const { email, username, password } = form;
     dispatch(login({ email, username, password }));
@@ -67,13 +67,13 @@ const LoginForm = ({ history }) => {
   }, [history, user]);
 
   return (
-      <AuthForm
-          type="login"
-          form={form}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          error={error}
-      />
+    <AuthForm
+      type="login"
+      form={form}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      error={error}
+    />
   );
 };
 

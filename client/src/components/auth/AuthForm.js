@@ -49,11 +49,11 @@ const ErrorMessage = styled.div`
 const Footer = styled.div`
   margin-top: 2rem;
   text-align: end;
-  
+
   a {
-    color: #3D79F2;
+    color: #3d79f2;
     text-decoration: underline;
-    
+
     &:hover {
       color: #2665ef;
     }
@@ -64,52 +64,52 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = typeMap[type];
 
   return (
-      <AuthFormBlock>
-        <h3>{text}</h3>
-        <form onSubmit={onSubmit}>
+    <AuthFormBlock>
+      <h3>{text}</h3>
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          autoComplete="email"
+          name="email"
+          placeholder="이메일"
+          onChange={onChange}
+          value={form.email}
+        />
+        <StyledInput
+          autoComplete="username"
+          name="username"
+          placeholder="아이디"
+          onChange={onChange}
+          value={form.username}
+        />
+        <StyledInput
+          autoComplete="new-password"
+          name="password"
+          placeholder="비밀번호"
+          type="password"
+          onChange={onChange}
+          value={form.password}
+        />
+        {type === 'register' && (
           <StyledInput
-              autoComplete="email"
-              name="email"
-              placeholder="이메일"
-              onChange={onChange}
-              value={form.username}
+            autoComplete="new-password"
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
-          <StyledInput
-              autoComplete="username"
-              name="username"
-              placeholder="아이디"
-              onChange={onChange}
-              value={form.username}
-          />
-          <StyledInput
-              autoComplete="new-password"
-              name="password"
-              placeholder="비밀번호"
-              type="password"
-              onChange={onChange}
-              value={form.password}
-          />
-          {type === 'register' && (
-              <StyledInput
-                  autoComplete="new-password"
-                  name="passwordConfirm"
-                  placeholder="비밀번호 확인"
-                  type="password"
-                  onChange={onChange}
-                  value={form.passwordConfirm}
-              />
-          )}
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <ButtonWithMargin fullWidth>{text}</ButtonWithMargin>
-        </form>
-        <Footer>
-          {type === 'login' ? (
-              <Link to="/register">회원가입</Link>
-          ) : (
-              <Link to="/login">로그인</Link>
-          )}
-        </Footer>
-      </AuthFormBlock>
+        )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ButtonWithMargin fullWidth>{text}</ButtonWithMargin>
+      </form>
+      <Footer>
+        {type === 'login' ? (
+          <Link to="/register">회원가입</Link>
+        ) : (
+          <Link to="/login">로그인</Link>
+        )}
+      </Footer>
+    </AuthFormBlock>
   );
 };
 
